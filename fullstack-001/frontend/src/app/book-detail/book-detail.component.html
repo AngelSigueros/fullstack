@@ -1,0 +1,13 @@
+<h2>Book Detail</h2>
+<hr>
+<ul>
+    @if (book) {
+        <li>{{book.id}} - {{book.title}} - {{book.price}} - {{book.isbn}} - {{book.publishDate}}
+            <button class="btn btn-secondary" routerLink="/books/{{book.id}}/detail">Edit</button>
+            <button class="btn btn-danger" (click)="borrarBook(book.id)">Borrar</button>
+        </li>
+    }
+    @else {
+        <li>No hay libro</li>
+    }
+</ul>
