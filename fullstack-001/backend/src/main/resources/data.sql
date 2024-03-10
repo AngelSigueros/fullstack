@@ -1,4 +1,5 @@
-INSERT INTO book (id, title, isbn, price, publish_date) VALUES (1, 'To Kill a Mockingbird', '9780446310789', 7.19, '1960-02-16'),
+INSERT INTO book (id, title, isbn, price, publish_date) VALUES
+(1, 'To Kill a Mockingbird', '9780446310789', 7.19, '1960-02-16'),
 (2, '1984', '9780451524935', 9.99, '1949-02-16'),
 (3, 'The Great Gatsby', '9780743273565', 14.99, '1925-02-16'),
 (4, 'Moby Dick', '9781503280786', 11.50, '1851-02-16'),

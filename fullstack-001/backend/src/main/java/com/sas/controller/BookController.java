@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin("http://localhost:4200/")
+@CrossOrigin("*")
 @Slf4j
 @RestController
 @RequestMapping("/api/books")
@@ -30,6 +30,13 @@ public class BookController {
     public List<Book> findAll() {
         log.info(this.getClass().getName() +" - findAll");
         return bookRepo.findAll();
+    }
+
+
+    @GetMapping("/{isbn}")
+    public Book findByIsbn(@PathVariable Long isbn) {
+        log.info(this.getClass().getName() +" - findByIsbn "+ isbn);
+        return bookRepo.findById(isbn).orElseThrow();
     }
 
 
