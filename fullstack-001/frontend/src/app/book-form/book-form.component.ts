@@ -50,15 +50,19 @@ export class BookFormComponent implements OnInit {
       this.http
         .get<Book>('http://localhost:8080/api/books/' + id)
         .subscribe((book) => {
-          this.bookForm.reset({
-            id: book.id,
-            title: book.title,
-            isbn: book.isbn,
-            price: book.price,
-            publishDate: book.publishDate,
-            author: book.author
-          });
+
+          this.bookForm.patchValue(book);
+          
+          // this.bookForm.reset({
+          //   id: book.id,
+          //   title: book.title,
+          //   isbn: book.isbn,
+          //   price: book.price,
+          //   publishDate: book.publishDate,
+          //   author: book.author
+          // });
           // marcar boolean true isUpdate
+          
           this.isUpdated = true;
         });
     });

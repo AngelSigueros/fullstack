@@ -6,7 +6,7 @@
     }
 <ul>
     @for (book of books; track book.id) {
-        <li>{{book.id}} - {{book.title}} - {{book.price}} - {{book.isbn}} - {{book.publishDate}}
+        <li>{{book.id}} - {{book.author.name}} - {{book.title}} - {{book.price}} - {{book.isbn}} - {{book.publishDate}}
             <button class="btn btn-primary" routerLink="/books/{{book.id}}/detail">Ver</button>
             <button class="btn btn-secondary" routerLink="/books/{{book.id}}/update">Edit</button>
             <button class="btn btn-danger" (click)="delete(book)">Borrar</button>

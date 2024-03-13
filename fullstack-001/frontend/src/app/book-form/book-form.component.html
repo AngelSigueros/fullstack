@@ -35,7 +35,7 @@
         <select class="form-select" id="author" formControlName="author">
             <option>Elige Autor</option>
             @for (author of authors; track author.id) {
-            <option value="{{author.id}}">{{author.name}}</option>
+            <option [value]="author.id" [selected]="author.id === bookForm.get('author')?.get('id')?.value">{{author.name}}</option>
             }
         </select>
         <label for="author">Autores</label>

@@ -9,7 +9,7 @@ import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
   standalone: true,
   imports: [RouterLink, HttpClientModule, NgbAlertModule],
   templateUrl: './book-list.component.html',
-  styleUrl: './book-list.component.css'
+  styleUrl: './book-list.component.css',
 })
 
 /*
@@ -55,29 +55,30 @@ export class BookListComponent implements OnInit {
 
 }
 */
-
-export class BookListComponent implements OnInit{
-
+export class BookListComponent implements OnInit {
   books: Book[] = [];
   showDeletedBookMessage: boolean = false;
-  
+
   constructor(private httpClient: HttpClient) {}
-  
+
   ngOnInit(): void {
-  this.loadBooks();
+    this.loadBooks();
   }
+  
   delete(book: Book) {
-  const url = 'http://localhost:8080/api/books/' + book.id;
-  this.httpClient.delete(url).subscribe(response => {
-  this.loadBooks();
-  this.showDeletedBookMessage = true;
-  }); // recarga los libros despues de borrar
+    const url = 'http://localhost:8080/api/books/' + book.id;
+    this.httpClient.delete(url).subscribe((response) => {
+      this.loadBooks();
+      this.showDeletedBookMessage = true;
+    }); // recarga los libros despues de borrar
   }
+  
   hideDeletedBookMessage() {
-  this.showDeletedBookMessage = false;
+    this.showDeletedBookMessage = false;
   }
+  
   private loadBooks() {
-  const url = 'http://localhost:8080/api/books';
-  this.httpClient.get<Book[]>(url).subscribe(books => this.books = books);
+    const url = 'http://localhost:8080/api/books';
+    this.httpClient.get<Book[]>(url).subscribe((books) => (this.books = books));
   }
-  }
+}
