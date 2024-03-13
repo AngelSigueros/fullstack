@@ -1,4 +1,3 @@
-FROM ubuntu:latest
-LABEL authors="30"
-
-ENTRYPOINT ["top", "-b"]
+FROM openjdk:21
+COPY target/backend-0.0.1-SNAPSHOT.jar backend-0.0.1-SNAPSHOT.jar
+ENTRYPOINT ["java","-jar","/backend-0.0.1-SNAPSHOT.jar"]

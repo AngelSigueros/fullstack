@@ -1,0 +1,13 @@
+<h2>Autor Detail</h2>
+<hr>
+<ul>
+    @if (author) {
+        <li>{{author.id}} - {{author.name}} - {{author.country}} - {{author.active}}
+            <button class="btn btn-secondary" routerLink="/authors/{{author.id}}/update">Edit</button>
+            <button class="btn btn-danger" (click)="borrarAuthor(author.id)">Borrar</button>
+        </li>
+    }
+    @else {
+        <li>No hay Autor</li>
+    }
+</ul>

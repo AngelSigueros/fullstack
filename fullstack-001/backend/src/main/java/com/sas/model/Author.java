@@ -7,23 +7,17 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class Book {
+public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String title;
-
-    @Column(unique = true, nullable = false)
-    private String isbn;
-    private int price;
-    private LocalDate publishDate;
-
-    @ManyToOne
-    private Author author;
+    private String name;
 }

@@ -9,3 +9,8 @@ INSERT INTO book (id, title, isbn, price, publish_date) VALUES
 (8, 'The Hobbit', '9780547928227', 13.95, '1937-02-16'),
 (9, 'Fahrenheit 451', '9781451673319', 12.99, '1953-02-16'),
 (10, 'A Tale of Two Cities', '9781503219708', 9.99, '1859-02-16');
+--
+INSERT INTO `author` (`id`, `name`) VALUES ('1', 'Autor 1');
+INSERT INTO `author` (`id`, `name`) VALUES ('2', 'Autor 2');
+INSERT INTO `author` (`id`, `name`) VALUES ('3', 'Autor 3');
+INSERT INTO `author` (`id`, `name`) VALUES ('4', 'Autor 4');

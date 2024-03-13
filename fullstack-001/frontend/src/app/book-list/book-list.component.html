@@ -1,11 +1,16 @@
 <h2>Book List</h2>
 <hr>
+@if (showDeletedBookMessage) {
+    <!--<ngb-alert type="success" [dismissible]="false">Libro borrado correctamente</ngb-alert>-->
+    <ngb-alert type="success" (closed)="hideDeletedBookMessage()">Libro borrado correctamente</ngb-alert>
+    }
 <ul>
     @for (book of books; track book.id) {
         <li>{{book.id}} - {{book.title}} - {{book.price}} - {{book.isbn}} - {{book.publishDate}}
             <button class="btn btn-primary" routerLink="/books/{{book.id}}/detail">Ver</button>
             <button class="btn btn-secondary" routerLink="/books/{{book.id}}/update">Edit</button>
-            <button class="btn btn-danger" (click)="borrarLibro(book.id)">Borrar</button>
+            <button class="btn btn-danger" (click)="delete(book)">Borrar</button>
+            <!-- <button class="btn btn-danger" (click)="borrarLibro(book.id)">Borrar</button> -->
         </li>
     }
     @empty {
@@ -15,4 +20,4 @@
 
 <hr>
 
-<button class="btn btn-danger" (click)="borrarTodo()">Borrar Todo</button>
+<!-- <button class="btn btn-danger" (click)="borrarTodo()">Borrar Todo</button> -->

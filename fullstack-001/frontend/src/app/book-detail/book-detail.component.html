@@ -3,7 +3,7 @@
 <ul>
     @if (book) {
         <li>{{book.id}} - {{book.title}} - {{book.price}} - {{book.isbn}} - {{book.publishDate}}
-            <button class="btn btn-secondary" routerLink="/books/{{book.id}}/detail">Edit</button>
+            <button class="btn btn-secondary" routerLink="/books/{{book.id}}/update">Edit</button>
             <button class="btn btn-danger" (click)="borrarBook(book.id)">Borrar</button>
         </li>
     }
