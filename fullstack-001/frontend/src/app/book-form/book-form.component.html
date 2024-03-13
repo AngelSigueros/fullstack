@@ -1,2 +1,33 @@
 <h2>Book Form</h2>
 <hr>
+<form [formGroup]="bookForm" (ngSubmit)="save()">
+
+    <input type="hidden" formControlName="id">
+
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="title" 
+            formControlName="title">
+        <label for="title">Titulo del libro</label>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="isbn" 
+            formControlName="isbn">
+        <label for="isbn">Isbn del libro</label>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input type="number" class="form-control" id="price" 
+            formControlName="price" min="0">
+        <label for="isbn">Precio del libreo</label>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input type="date" class="form-control" id="publishDate" 
+            formControlName="publishDate" min="0">
+        <label for="publishDate">Publish Date del libreo</label>
+    </div>
+
+    <button class="btn btn-success" type="submit">Enviar</button>
+
+</form>

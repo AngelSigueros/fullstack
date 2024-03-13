@@ -4,7 +4,7 @@
     @for (book of books; track book.id) {
         <li>{{book.id}} - {{book.title}} - {{book.price}} - {{book.isbn}} - {{book.publishDate}}
             <button class="btn btn-primary" routerLink="/books/{{book.id}}/detail">Ver</button>
-            <button class="btn btn-secondary" routerLink="/books/{{book.id}}/edit">Edit</button>
+            <button class="btn btn-secondary" routerLink="/books/{{book.id}}/update">Edit</button>
             <button class="btn btn-danger" (click)="borrarLibro(book.id)">Borrar</button>
         </li>
     }

@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @CrossOrigin("*")
 @Slf4j
@@ -33,7 +34,7 @@ public class BookController {
     }
 
 
-    @GetMapping("/{isbn}")
+    @GetMapping("/isbn/{isbn}")
     public Book findByIsbn(@PathVariable Long isbn) {
         log.info(this.getClass().getName() +" - findByIsbn "+ isbn);
         return bookRepo.findById(isbn).orElseThrow();
@@ -50,9 +51,12 @@ public class BookController {
 
     @PutMapping("/{id}")
     public Book updateBook(@RequestBody Book book,@PathVariable Long id) {
-        log.info(this.getClass().getName() +" - updateBook "+ id);
+        log.info(this.getClass().getName() + " - updateBook " + id);
         // ToDo
-        return bookRepo.save(book);
+        if (this.bookRepo.existsById(id))
+            return bookRepo.save(book);
+        else
+            throw new NoSuchElementException();
     }
 
 

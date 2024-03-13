@@ -22,6 +22,10 @@ export const routes: Routes = [
         path: 'books/create',
         component: BookFormComponent
     },
+    {
+        path: 'books/:id/update',
+        component: BookFormComponent
+    },
     {   path: '**', 
         component: NotFoundComponent
     }

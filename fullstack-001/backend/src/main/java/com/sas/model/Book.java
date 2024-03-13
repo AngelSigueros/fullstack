@@ -17,8 +17,9 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String title;
+
+    @Column(unique = true, nullable = false)
     private String isbn;
     private int price;
     private LocalDate publishDate;
