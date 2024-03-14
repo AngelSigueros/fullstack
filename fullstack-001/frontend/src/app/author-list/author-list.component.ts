@@ -1,6 +1,6 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { Author } from '../models/author.model';
+import { Author } from '../model/author.model';
 import { RouterLink } from '@angular/router';
 import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 

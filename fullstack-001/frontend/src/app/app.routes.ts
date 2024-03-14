@@ -6,6 +6,9 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { AuthorListComponent } from './author-list/author-list.component';
 import { AuthorDetailComponent } from './author-detail/author-detail.component';
 import { AuthorFormComponent } from './author-form/author-form.component';
+import { EditorialDetailComponent } from './editorial-detail/editorial-detail.component';
+import { EditorialListComponent } from './editorial-list/editorial-list.component';
+import { EditorialFormComponent } from './editorial-form/editorial-form.component';
 
 export const routes: Routes = [
     {
@@ -44,6 +47,22 @@ export const routes: Routes = [
     {
         path: 'authors/create',
         component: AuthorFormComponent
+    },
+    {
+        path: 'editorials',
+        component: EditorialListComponent
+    },
+    {
+        path: 'editorials/:id/detail',
+        component: EditorialDetailComponent
+    },
+    {
+        path: 'editorials/:id/update',
+        component: EditorialFormComponent
+    },
+    {
+        path: 'editorials/create',
+        component: EditorialFormComponent
     },
     {   path: '**', 
         component: NotFoundComponent

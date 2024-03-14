@@ -1,7 +1,7 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { Author } from '../models/author.model';
+import { Author } from '../model/author.model';
 
 @Component({
   selector: 'app-author-detail',

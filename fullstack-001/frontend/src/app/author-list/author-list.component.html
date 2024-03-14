@@ -7,8 +7,8 @@
 <ul>
     @for (author of authors; track author.id) {
         <li>{{author.id}} - {{author.name}}
-            <button class="btn btn-primary" routerLink="/author/{{author.id}}/detail">Ver</button>
-            <button class="btn btn-secondary" routerLink="/author/{{author.id}}/update">Edit</button>
+            <button class="btn btn-primary" routerLink="/authors/{{author.id}}/detail">Ver</button>
+            <button class="btn btn-secondary" routerLink="/authors/{{author.id}}/update">Edit</button>
             <button class="btn btn-danger" (click)="delete(author)">Borrar</button>
             <!-- <button class="btn btn-danger" (click)="borrarAutor(book.id)">Borrar</button> -->
         </li>

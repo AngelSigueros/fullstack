@@ -1,15 +1,17 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Book } from '../models/book.model';
+import { Book } from '../model/book.model';
 import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
+import { BookDetailComponent } from "../book-detail/book-detail.component";
+import { DatePipe } from '@angular/common';
 
 @Component({
-  selector: 'app-book-list',
-  standalone: true,
-  imports: [RouterLink, HttpClientModule, NgbAlertModule],
-  templateUrl: './book-list.component.html',
-  styleUrl: './book-list.component.css',
+    selector: 'app-book-list',
+    standalone: true,
+    templateUrl: './book-list.component.html',
+    styleUrl: './book-list.component.css',
+    imports: [DatePipe, RouterLink, HttpClientModule, NgbAlertModule, BookDetailComponent]
 })
 
 /*
@@ -81,4 +83,6 @@ export class BookListComponent implements OnInit {
     const url = 'http://localhost:8080/api/books';
     this.httpClient.get<Book[]>(url).subscribe((books) => (this.books = books));
   }
+
+
 }

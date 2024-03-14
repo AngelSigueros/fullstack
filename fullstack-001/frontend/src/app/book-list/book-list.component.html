@@ -1,20 +1,86 @@
 <h2>Book List</h2>
 <hr>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Available</th>
+                        <th scope="col">Price (€)</th>
+                        <th scope="col">Publish Date</th>
+                        <th scope="col">Autor</th>
+                        <th scope="col">Editorial</th>
+                        <th scope="col">Autor</th>
+                        <th scope="col">Editorial</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (book of books; track book.id) {
+                    <tr>
+                        <th scope="row">{{book.id}}</th>
+                        <td>{{book.title}}</td>
+                        <td>
+                            @if (book.available) {
+                            <span class="badge text-bg-success">Sí</span>
+                            } @else{
+                            <span class="badge text-bg-danger">No</span>
+                            }
+                        </td>
+                        <td>{{book.price}}</td>
+                        <td>{{book.publishDate | date:'dd/MM/yy'}}</td>
+                        <td>{{book.author.name }}</td>
+                        <td>{{book.editorial.name }}</td>
+                        <td>
+                            <a class="badge text-bg-secondary text-decoration-none" [routerLink]="['/authors', book.author.id, 'detail']">
+                            {{book.author.name}}
+                            </a>
+                            </td>
+                            <td>
+                            <a class="badge text-bg-warning text-decoration-none" [routerLink]="['/editorials', book.editorial.id, 'detail']">
+                            {{book.editorial.name}}
+                            </a>
+                            </td>
+                            <td>
+                            <button class="btn btn-info" [routerLink]="['/books', book.id, 'detail']">Ver</button>
+                            <button class="btn btn-success ms-2" [routerLink]="['/books', book.id, 'update']">Edit</button>
+                            <button class="btn btn-danger ms-2" (click)="delete(book)">Borrar</button>
+                            </td>
+                    </tr>
+                    }     @empty {
+                        <tr><td>No hay libros</td></tr>
+                        }
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+<hr>
+
 @if (showDeletedBookMessage) {
-    <!--<ngb-alert type="success" [dismissible]="false">Libro borrado correctamente</ngb-alert>-->
-    <ngb-alert type="success" (closed)="hideDeletedBookMessage()">Libro borrado correctamente</ngb-alert>
-    }
+<!--<ngb-alert type="success" [dismissible]="false">Libro borrado correctamente</ngb-alert>-->
+<ngb-alert type="success" (closed)="hideDeletedBookMessage()">Libro borrado correctamente</ngb-alert>
+}
 <ul>
+    <li>LibroId - AuthorId - EditorialId</li>
     @for (book of books; track book.id) {
-        <li>{{book.id}} - {{book.author.name}} - {{book.title}} - {{book.price}} - {{book.isbn}} - {{book.publishDate}}
-            <button class="btn btn-primary" routerLink="/books/{{book.id}}/detail">Ver</button>
-            <button class="btn btn-secondary" routerLink="/books/{{book.id}}/update">Edit</button>
-            <button class="btn btn-danger" (click)="delete(book)">Borrar</button>
-            <!-- <button class="btn btn-danger" (click)="borrarLibro(book.id)">Borrar</button> -->
-        </li>
+    <li>{{book.id}} - {{book.author.id}} - {{book.editorial.id}} - {{book.title}} - {{book.price}} - {{book.isbn}} -
+        {{book.publishDate}}
+        <button class="btn btn-primary" routerLink="/books/{{book.id}}/detail">Ver</button>
+        <button class="btn btn-secondary" routerLink="/books/{{book.id}}/update">Edit</button>
+        <button class="btn btn-danger" (click)="delete(book)">Borrar</button>
+        <!-- <button class="btn btn-danger" (click)="borrarLibro(book.id)">Borrar</button> -->
+    </li>
     }
     @empty {
-        <li>No hay libros</li>
+    <li>No hay libros</li>
     }
 </ul>
 

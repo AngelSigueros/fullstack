@@ -13,21 +13,14 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Book {
+public class Editorial {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String title;
+    private String name;
 
-    @Column(unique = true, nullable = false)
-    private String isbn;
-    private int price;
-    private LocalDate publishDate;
-    private Boolean available;
+    private String photoUrl;
+    private String descripcion;
+    private int year;
 
-    @ManyToOne
-    private Author author;
-
-    @ManyToOne
-    private Editorial editorial;
 }

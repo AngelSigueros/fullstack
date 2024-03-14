@@ -1,6 +1,6 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { Component } from '@angular/core';
-import { Book } from '../models/book.model';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { Book } from '../model/book.model';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 
@@ -12,7 +12,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
   styleUrl: './book-detail.component.css'
 })
 export class BookDetailComponent {
-
+  
   book: Book | undefined;
 
   constructor(private activeRoute: ActivatedRoute, 

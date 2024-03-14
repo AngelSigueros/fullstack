@@ -1,0 +1,20 @@
+<h2>Editorial List</h2>
+<hr>
+<hr>
+@if (showDeletedEditorialMessage) {
+    <!--<ngb-alert type="success" [dismissible]="false">Libro borrado correctamente</ngb-alert>-->
+    <ngb-alert type="success" (closed)="hideDeletedEditorialMessage()">Editorial borrada correctamente</ngb-alert>
+    }
+<ul>
+    @for (editorial of editorials; track editorial.id) {
+        <li>{{editorial.id}} - {{editorial.name}}
+            <button class="btn btn-primary" routerLink="/editorials/{{editorial.id}}/detail">Ver</button>
+            <button class="btn btn-secondary" routerLink="/editorials/{{editorial.id}}/update">Edit</button>
+            <button class="btn btn-danger" (click)="delete(editorial)">Borrar</button>
+            <!-- <button class="btn btn-danger" (click)="borrarAutor(book.id)">Borrar</button> -->
+        </li>
+    }
+    @empty {
+        <li>No hay autores</li>
+    }
+</ul>
