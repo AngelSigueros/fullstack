@@ -1,0 +1,28 @@
+services:
+  mysql:
+    image: mysql:8.0
+    command: --default-authentication-plugin=caching_sha2_password
+    restart: always
+    environment:
+      MYSQL_DATABASE: fullstack_db
+      MYSQL_USER: admin
+      MYSQL_ROOT_PASSWORD: admin
+    ports:
+      - 3306:3306
+    networks:
+      - backend-net
+
+  spring-app:
+    build:
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    volumes:
+      - .m2:/root/.m2
+    networks:
+      - backend-net
+    depends_on:
+      - mysql
+
+networks:
+  backend-net:
