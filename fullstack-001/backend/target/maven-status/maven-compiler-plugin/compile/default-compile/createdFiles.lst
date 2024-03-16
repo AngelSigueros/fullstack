@@ -1,0 +1,10 @@
+com\sas\model\Editorial.class
+com\sas\controller\AuthorController.class
+com\sas\repository\AuthorRepository.class
+com\sas\BackendApplication.class
+com\sas\repository\BookRepository.class
+com\sas\controller\EditorialController.class
+com\sas\model\Author.class
+com\sas\model\Book.class
+com\sas\controller\BookController.class
+com\sas\repository\EditorialRepository.class
