@@ -3,10 +3,10 @@ INSERT INTO `author` (`id`, `name`) VALUES ('2', 'Autor 2');
 INSERT INTO `author` (`id`, `name`) VALUES ('3', 'Autor 3');
 INSERT INTO `author` (`id`, `name`) VALUES ('4', 'Autor 4');
 --
-INSERT INTO `fullstack_db`.`editorial` (`year`, `id`, `descripcion`, `name`, photo_url) VALUES ('1954', '1', 'Edtorial 1 con solera', 'Editorial 1', 'https://picsum.photos/id/944/900/500');
-INSERT INTO `fullstack_db`.`editorial` (`year`, `id`, `descripcion`, `name`, photo_url) VALUES ('1964', '2', 'Edtorial 2 con solera', 'Editorial 2', 'https://picsum.photos/id/944/900/500');
-INSERT INTO `fullstack_db`.`editorial` (`year`, `id`, `descripcion`, `name`, photo_url) VALUES ('1974', '3', 'Edtorial 3 con solera', 'Editorial 3', 'https://picsum.photos/id/944/900/500');
-INSERT INTO `fullstack_db`.`editorial` (`year`, `id`, `descripcion`, `name`, photo_url) VALUES ('1984', '4', 'Edtorial 4 con solera', 'Editorial 4', 'https://picsum.photos/id/944/900/500');
+INSERT INTO `editorial` (`year`, `id`, `descripcion`, `name`, photo_url) VALUES ('1954', '1', 'Edtorial 1 con solera', 'Editorial 1', 'https://picsum.photos/id/944/900/500');
+INSERT INTO `editorial` (`year`, `id`, `descripcion`, `name`, photo_url) VALUES ('1964', '2', 'Edtorial 2 con solera', 'Editorial 2', 'https://picsum.photos/id/944/900/500');
+INSERT INTO `editorial` (`year`, `id`, `descripcion`, `name`, photo_url) VALUES ('1974', '3', 'Edtorial 3 con solera', 'Editorial 3', 'https://picsum.photos/id/944/900/500');
+INSERT INTO `editorial` (`year`, `id`, `descripcion`, `name`, photo_url) VALUES ('1984', '4', 'Edtorial 4 con solera', 'Editorial 4', 'https://picsum.photos/id/944/900/500');
 --
 INSERT INTO book (id, title, isbn, price, publish_date, author_id, editorial_id, available) VALUES
 (1, 'To Kill a Mockingbird', '9780446310789', 7.19, '1960-02-16', 1, 1, false),
