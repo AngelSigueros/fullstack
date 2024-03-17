@@ -1,7 +1,7 @@
 <h2>Book List</h2>
 <hr>
 
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col">
             <table class="table">
@@ -33,8 +33,8 @@
                         </td>
                         <td>{{book.price}}</td>
                         <td>{{book.publishDate | date:'dd/MM/yy'}}</td>
-                        <td>{{book.author.name }}</td>
-                        <td>{{book.editorial.name }}</td>
+                        <td>{{book.author.name}}</td>
+                        <td>{{book.editorial.name}}</td> 
                         <td>
                             <a class="badge text-bg-secondary text-decoration-none" [routerLink]="['/authors', book.author.id, 'detail']">
                             {{book.author.name}}
