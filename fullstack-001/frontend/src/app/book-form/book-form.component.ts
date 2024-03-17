@@ -15,19 +15,6 @@ import { Editorial } from '../model/editorial.model';
 })
 export class BookFormComponent implements OnInit {
 
-  /*
-  bookForm = this.fb.group({
-    id: [0],
-    isbn: [''],
-    price: [0.0],
-    author: this.fb.group({
-      id: [0],
-      fullName: [''],
-      country: [''],
-      active: [false]
-    })
-  });
-  */
   bookForm = new FormGroup({
     id: new FormControl<number>(0),
     title: new FormControl<string>(''),
@@ -65,17 +52,7 @@ export class BookFormComponent implements OnInit {
         this.httpClient.get<Book>('https://fullstack-byvu.onrender.com/api/books/' + id).subscribe(bookFromBackend => {
           // cargar el libro obtenido en el formulario bookForm
           this.bookForm.patchValue(bookFromBackend);
-
-          // this.bookForm.reset({
-          //   id: bookFromBackend.id,
-          //   isbn: bookFromBackend.isbn,
-          //   price: bookFromBackend.price,
-          //   author: bookFromBackend.author
-          // });
-
-          // marcar boolean true isUpdate
           this.isUpdate = true;
-
         });
       });
     }
