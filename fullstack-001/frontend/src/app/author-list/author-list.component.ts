@@ -22,7 +22,7 @@ export class AuthorListComponent {
   }
   
   delete(author: Author) {
-    const url = 'http://localhost:8080/api/authors/' + author.id;
+    const url = 'https://fullstack-byvu.onrender.com/api/authors/' + author.id;
     this.httpClient.delete(url).subscribe((response) => {
       this.loadAuthors();
       this.showDeletedAuthorMessage = true;
@@ -34,7 +34,7 @@ export class AuthorListComponent {
   }
   
   private loadAuthors() {
-    const url = 'http://localhost:8080/api/authors';
+    const url = 'https://fullstack-byvu.onrender.com/api/authors';
     this.httpClient.get<Author[]>(url).subscribe(authors=>this.authors=authors);
   }
 }

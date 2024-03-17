@@ -22,7 +22,7 @@ export class EditorialListComponent {
   }
   
   delete(editorial: Editorial) {
-    const url = 'http://localhost:8080/api/editorials/' + editorial.id;
+    const url = 'https://fullstack-byvu.onrender.com/api/editorials/' + editorial.id;
     this.httpClient.delete(url).subscribe((response) => {
       this.loadeditorials();
       this.showDeletedEditorialMessage = true;
@@ -34,7 +34,7 @@ export class EditorialListComponent {
   }
   
   private loadeditorials() {
-    const url = 'http://localhost:8080/api/editorials';
+    const url = 'https://fullstack-byvu.onrender.com/editorials';
     this.httpClient.get<Editorial[]>(url).subscribe(editorials=>this.editorials=editorials);
   }
 }

@@ -24,7 +24,7 @@ export class AuthorDetailComponent {
 
     this.activeRoute.params.subscribe(params=>{
       const id = params['id'];
-      const url = "http://localhost:8080/api/authors/"+ id;
+      const url = "https://fullstack-byvu.onrender.com/api/authors/"+ id;
       this.http.get<Author>(url).subscribe(Author=>this.author=Author)
     })
   }
@@ -34,7 +34,7 @@ export class AuthorDetailComponent {
     
     if (!id) return;
     
-    const url = "http://localhost:8080/api/authors/"+ id;
+    const url = "https://fullstack-byvu.onrender.com/api/authors/"+ id;
     this.http.delete(url).subscribe(a=>console.log('Autor eliminado'));
 
     // No llama al OnIit ToDo

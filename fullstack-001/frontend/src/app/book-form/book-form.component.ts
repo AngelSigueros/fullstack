@@ -52,17 +52,17 @@ export class BookFormComponent implements OnInit {
 
     ngOnInit(): void {
       // cargar autores de backend para el selector de autores en el formulario
-      this.httpClient.get<Author[]>('http://localhost:8080/api/authors')
+      this.httpClient.get<Author[]>('https://fullstack-byvu.onrender.com/api/authors')
       .subscribe(authors => this.authors = authors);
 
-      this.httpClient.get<Editorial[]>('http://localhost:8080/api/editorials')
+      this.httpClient.get<Editorial[]>('https://fullstack-byvu.onrender.com/api/editorials')
       .subscribe(editorials => this.editorials = editorials);
 
       this.activatedRoute.params.subscribe(params => {
         const id = params['id'];
         if(!id) return;
 
-        this.httpClient.get<Book>('http://localhost:8080/api/books/' + id).subscribe(bookFromBackend => {
+        this.httpClient.get<Book>('https://fullstack-byvu.onrender.com/api/books/' + id).subscribe(bookFromBackend => {
           // cargar el libro obtenido en el formulario bookForm
           this.bookForm.patchValue(bookFromBackend);
 
@@ -85,13 +85,13 @@ export class BookFormComponent implements OnInit {
       console.log(book);
 
       if (this.isUpdate) {
-        const url = 'http://localhost:8080/api/books/' + book.id;
+        const url = 'https://fullstack-byvu.onrender.com/api/books/' + book.id;
         this.httpClient.put<Book>(url, book).subscribe(bookFromBackend => {
           this.router.navigate(['/books', bookFromBackend.id, 'detail']);
         });
 
       } else {
-        const url = 'http://localhost:8080/api/books';
+        const url = 'https://fullstack-byvu.onrender.com/api/books';
         this.httpClient.post<Book>(url, book).subscribe(bookFromBackend => {
           this.router.navigate(['/books', bookFromBackend.id, 'detail']);
         });
