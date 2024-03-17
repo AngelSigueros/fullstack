@@ -17,34 +17,6 @@ import { DatePipe } from '@angular/common';
 /*
 export class BookListComponent implements OnInit {
 
-  books: Book[]=[];
-  showDeleteBook: boolean = false;
-
-  constructor(private http: HttpClient) {
-  }
-
-  ngOnInit(): void {
-    console.log('BookListComponent - ngOnInit');
-
-    const url = "http://localhost:8080/api/books";
-    this.http.get<Book[]>(url).subscribe(books=>this.books=books)
-  }
-
-  borrarLibro(id: number) {
-    console.log('BookListComponent - borrarLibro');
-
-    if (!id) return;
-    
-    const url = "http://localhost:8080/api/books/"+ id;
-    this.http.delete(url).subscribe(b=>console.log('Libro eliminado'));
-
-    // elimino el libro del array books
-    const index = this.books.findIndex(book => book.id === id);
-    if (index !== -1) {
-      this.books.splice(index, 1);
-    }
-  }
-
   borrarTodo() {
     console.log('BookListComponent - borrarTodo');
 
