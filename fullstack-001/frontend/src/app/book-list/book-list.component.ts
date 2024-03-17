@@ -14,21 +14,6 @@ import { DatePipe } from '@angular/common';
     imports: [DatePipe, RouterLink, HttpClientModule, NgbAlertModule, BookDetailComponent]
 })
 
-/*
-export class BookListComponent implements OnInit {
-
-  borrarTodo() {
-    console.log('BookListComponent - borrarTodo');
-
-    const url = "http://localhost:8080/api/books";
-    this.http.delete(url).subscribe(b=>console.log('Todos los libro eliminados'));
-
-    // vaciar el arrary de books
-    this.books.length=0;
-  }
-
-}
-*/
 export class BookListComponent implements OnInit {
   books: Book[] = [];
   showDeletedBookMessage: boolean = false;
@@ -55,6 +40,4 @@ export class BookListComponent implements OnInit {
     const url = 'https://fullstack-byvu.onrender.com/api/books';
     this.httpClient.get<Book[]>(url).subscribe((books) => (this.books = books));
   }
-
-
 }
