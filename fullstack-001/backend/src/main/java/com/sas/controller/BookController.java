@@ -41,6 +41,13 @@ public class BookController {
     }
 
 
+    @GetMapping("filter-by-author/{id}")
+    public List<Book> findAllByAuthorId(@PathVariable Long id) {
+        log.info(this.getClass().getName() +" - findAllByAuthorId");
+        return bookRepo.findAllByAuthorId(id);
+    }
+
+
     @PostMapping()
     public Book saveBook(@RequestBody Book book) {
         log.info(this.getClass().getName() +" - saveBook");

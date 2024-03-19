@@ -20,4 +20,9 @@ public class Author {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    private String country;
+    private Boolean active;
+    private String photoUrl;
+    @Column(length = 1000)
+    private String bio;
 }
