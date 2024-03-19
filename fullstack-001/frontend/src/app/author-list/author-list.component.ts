@@ -12,6 +12,8 @@ import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
   styleUrl: './author-list.component.css',
 })
 export class AuthorListComponent {
+
+  url_base = 'http://localhost:8080/api/authors'; // https://fullstack-byvu.onrender.com/api/authors/
   authors: Author[] = [];
   showDeletedAuthorMessage: boolean = false;
 
@@ -22,7 +24,7 @@ export class AuthorListComponent {
   }
   
   delete(author: Author) {
-    const url = 'https://fullstack-byvu.onrender.com/api/authors/' + author.id;
+    const url = this.url_base + '/'+ author.id;
     this.httpClient.delete(url).subscribe((response) => {
       this.loadAuthors();
       this.showDeletedAuthorMessage = true;
@@ -34,7 +36,7 @@ export class AuthorListComponent {
   }
   
   private loadAuthors() {
-    const url = 'https://fullstack-byvu.onrender.com/api/authors';
+    const url = this.url_base;
     this.httpClient.get<Author[]>(url).subscribe(authors=>this.authors=authors);
   }
 }

@@ -1,5 +1,5 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { Book } from '../model/book.model';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
@@ -25,7 +25,7 @@ export class BookDetailComponent {
 
     this.activeRoute.params.subscribe(params=>{
       const id = params['id'];
-      const url = "https://fullstack-byvu.onrender.com/api/books/"+ id;
+      const url = "http://localhost:8080/api/books/"+ id;
       this.http.get<Book>(url).subscribe(book=>this.book=book)
     })
   }
@@ -35,7 +35,7 @@ export class BookDetailComponent {
     
     if (!id) return;
     
-    const url = "https://fullstack-byvu.onrender.com/api/books/"+ id;
+    const url = "http://localhost:8080/api/books/"+ id;
     this.http.delete(url).subscribe(b=>console.log('Libro eliminado'));
 
     // No llama al OnIit ToDo
