@@ -36,19 +36,19 @@ public class AuthorController {
 
 
     @PostMapping()
-    public Author saveAuthor(@RequestBody Author Author) {
+    public Author saveAuthor(@RequestBody Author author) {
         log.info(this.getClass().getName() +" - saveAuthor");
         // Todo
-        return authorRepo.save(Author);
+        return authorRepo.save(author);
     }
 
 
     @PutMapping("/{id}")
-    public Author updateAuthor(@RequestBody Author Author,@PathVariable Long id) {
+    public Author updateAuthor(@RequestBody Author author,@PathVariable Long id) {
         log.info(this.getClass().getName() + " - updateAuthor " + id);
         // ToDo
         if (this.authorRepo.existsById(id))
-            return authorRepo.save(Author);
+            return authorRepo.save(author);
         else
             throw new NoSuchElementException();
     }
