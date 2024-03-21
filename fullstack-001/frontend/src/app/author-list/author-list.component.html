@@ -1,19 +1,31 @@
-<p>author-list works!</p>
-<hr>
-@if (showDeletedAuthorMessage) {
-    <!--<ngb-alert type="success" [dismissible]="false">Libro borrado correctamente</ngb-alert>-->
-    <ngb-alert type="success" (closed)="hideDeletedAuthorMessage()">Autor borrado correctamente</ngb-alert>
-    }
-<ul>
-    @for (author of authors; track author.id) {
-        <li>{{author.id}} - {{author.name}}
-            <button class="btn btn-primary" routerLink="/authors/{{author.id}}/detail">Ver</button>
-            <button class="btn btn-secondary" routerLink="/authors/{{author.id}}/update">Edit</button>
-            <button class="btn btn-danger" (click)="delete(author)">Borrar</button>
-            <!-- <button class="btn btn-danger" (click)="borrarAutor(book.id)">Borrar</button> -->
-        </li>
-    }
-    @empty {
-        <li>No hay autores</li>
-    }
-</ul>
+
+<div class="container-fluid px-4 py-5" id="custom-cards">
+    <h2 class="pb-2 border-bottom">Autores/as más populares</h2>
+  
+    <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
+      @for (author of authors; track author.id) {
+        <div class="col">
+          <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" [style.background-image]="'url('+ author.photoUrl +')'">
+            <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+              <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">{{author.name}}</h3>
+              <ul class="d-flex list-unstyled mt-auto">
+                <li class="me-auto">
+                  <!-- <img src="https://github.com/twbs.png" alt="Bootstrap" width="32" height="32" class="rounded-circle border border-white"> -->
+                  <img class="d-block mx-auto mb-4 rounded-circle" [src]="author.photoUrl" alt="" style="max-width: 120px;">
+                </li>
+                <li class="d-flex align-items-center me-3">
+                  <i class="bi bi-geo-alt fs-5 me-2"></i>
+                  <small>{{author.country}}</small>
+                </li>
+                <li class="d-flex align-items-center">
+                  <button class="btn btn-primary btn-sm" [routerLink]="['/authors', author.id, 'detail']">Ver<i class="bi bi-arrow-right fs-5 ms-2"></i></button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      }
+  
+    </div>
+  </div>
+  
