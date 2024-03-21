@@ -21,6 +21,11 @@
         <button class="w-100 btn btn-primary btn-lg mb-5 mt-5" type="submit">Guardar</button>
       </form>
     </div>
-    <div class="col-lg-4"></div>
+    <div class="col-lg-4">
+        @if (photoPreview) {
+            <h2 class="my-5">Previsualización foto</h2>
+            <img class="img-fluid" [src]="photoPreview">
+        }
+    </div>
   </div>
 </div>
