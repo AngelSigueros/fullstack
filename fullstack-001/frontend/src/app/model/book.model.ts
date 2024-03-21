@@ -7,6 +7,8 @@ export interface Book {
     isbn: string;
     price: number;
     publishDate: Date;
+    published: boolean;
+    releaseDate: Date;
     available: boolean;
     author: Author;
     editorial: Editorial

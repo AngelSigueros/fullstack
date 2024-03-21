@@ -1,7 +1,7 @@
-INSERT INTO `author` (`id`, `name`) VALUES ('1', 'Autor 1');
-INSERT INTO `author` (`id`, `name`) VALUES ('2', 'Autor 2');
-INSERT INTO `author` (`id`, `name`) VALUES ('3', 'Autor 3');
-INSERT INTO `author` (`id`, `name`) VALUES ('4', 'Autor 4');
+INSERT INTO `author` (`id`, `active`, `bio`, `country`, `name`, `photo_url`) VALUES (1,_binary '','bio 1','Spain','Autor 1','https://picsum.photos/id/944/900/500');
+INSERT INTO `author` (`id`, `active`, `bio`, `country`, `name`, `photo_url`) VALUES (2,_binary '','bio 2','Spain','Autor 2','https://picsum.photos/id/944/900/500');
+INSERT INTO `author` (`id`, `active`, `bio`, `country`, `name`, `photo_url`) VALUES (3,_binary '','bio 3','Spain','Autor 3','https://picsum.photos/id/944/900/500');
+INSERT INTO `author` (`id`, `active`, `bio`, `country`, `name`, `photo_url`) VALUES (4,_binary '','bio 4','Spain','Autor 4','https://picsum.photos/id/944/900/500');
 --
 INSERT INTO `editorial` (`year`, `id`, `descripcion`, `name`, photo_url) VALUES ('1954', '1', 'Edtorial 1 con solera', 'Editorial 1', 'https://picsum.photos/id/944/900/500');
 INSERT INTO `editorial` (`year`, `id`, `descripcion`, `name`, photo_url) VALUES ('1964', '2', 'Edtorial 2 con solera', 'Editorial 2', 'https://picsum.photos/id/944/900/500');

@@ -3,4 +3,6 @@ export interface Author {
     name: string;
     country: string;
     active: boolean;
+    photoUrl: string;
+    bio: string;
 }

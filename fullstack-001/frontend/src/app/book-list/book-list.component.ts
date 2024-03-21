@@ -25,7 +25,7 @@ export class BookListComponent implements OnInit {
   }
   
   delete(book: Book) {
-    const url = 'https://fullstack-byvu.onrender.com/api/books/' + book.id;
+    const url = 'http://localhost:8080/api/books/' + book.id;
     this.httpClient.delete(url).subscribe((response) => {
       this.loadBooks();
       this.showDeletedBookMessage = true;
@@ -37,7 +37,7 @@ export class BookListComponent implements OnInit {
   }
   
   private loadBooks() {
-    const url = 'https://fullstack-byvu.onrender.com/api/books';
+    const url = 'http://localhost:8080/api/books';
     this.httpClient.get<Book[]>(url).subscribe((books) => (this.books = books));
   }
 }
