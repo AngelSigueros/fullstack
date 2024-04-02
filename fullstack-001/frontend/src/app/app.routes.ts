@@ -29,6 +29,10 @@ export const routes: Routes = [
         component: BookFormComponent
     },
     {
+        path: 'books/:id/reserve',
+        component: ReservationFormComponent
+    },
+    {
         path: 'books/:id/update',
         component: BookFormComponent
     },
