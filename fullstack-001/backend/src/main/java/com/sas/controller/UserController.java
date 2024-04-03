@@ -10,6 +10,7 @@ import io.jsonwebtoken.security.Keys;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -121,20 +122,24 @@ public class UserController {
 //// Construye el token
 //                .compact();
 
-        // Alternativa
+        // Alternativa actual no deprecada
 
+        // JWT Json Web Token: jwt.io
+        // Generar token de acceso: eyJhbGciOiJIUzI1NiIsIn......
+        // Generar el token: https://github.com/jwtk/jjwt?tab=readme-ov-file#creating-a-jwt
         Date issuedDate = new Date();
         long nextWeekMillis = TimeUnit.DAYS.toMillis(7);
         Date expirationDate = new Date(issuedDate.getTime() + nextWeekMillis);
+        byte[] key = Base64.getDecoder().decode("FZD5maIaX04mYCwsgckoBh1NJp6T3t62h2MVyEtdo3w=");
 
         String token = Jwts.builder()
                 // id del usuario
                 .subject(String.valueOf(user.getId()))
                 // La clave secreta para firmar el token y saber que es nuestro cuando lleguen las peticiones del frontend
-                .signWith(Keys.hmacShaKeyFor("admin1234admin1234admin1234admin1234admin1234admin1234".getBytes()))
+                .signWith(Keys.hmacShaKeyFor(key))
                 // Fecha emisión del token
                 .issuedAt(issuedDate)
-                // Fecha expiración del token
+                // Fecha de expiración del token
                 .expiration(expirationDate)
                 // información personalizada: rol, username, email...
                 .claim("role", "admin")
