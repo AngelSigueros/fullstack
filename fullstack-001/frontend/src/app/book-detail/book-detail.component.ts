@@ -2,7 +2,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Book } from '../model/book.model';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { Rating } from '../model/rating.model';
+import { Rating } from '../model/rating.dto';
 import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 

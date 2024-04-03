@@ -1,7 +1,10 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { Login } from '../model/login.model';
+import { Login } from '../model/login.dto';
+import { Token } from '../model/token.dto';
+import { AuthenticationService } from '../authentication/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +19,8 @@ export class LoginComponent {
     password: ['']
   });
 
-  constructor(private fb: FormBuilder, private httpClient: HttpClient) {}
+  constructor(private fb: FormBuilder, private httpClient: HttpClient,
+    private authService: AuthenticationService, private router: Router) {}
 
   save() {
     const login: Login = {
@@ -25,8 +29,14 @@ export class LoginComponent {
     }
     console.log(login);
 
-    const url = 'http://localhost:8080/auth/login';
-    this.httpClient.post<any>(url, login).subscribe(response => console.log(response));
+    const url = 'http://localhost:8080/api/users/login';
+    this.httpClient.post<Token>(url, login).subscribe(response => {
+      console.log(response);
+      console.log(response.token);
+
+      this.authService.saveToken(response.token);
+      this.router.navigate(['/books']);
+    });
 
 
   }

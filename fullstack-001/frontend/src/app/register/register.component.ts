@@ -15,7 +15,7 @@ export class RegisterComponent {
   // no necesita FormBuilder:
   registerForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
-    phone: new FormControl('', [Validators.required, Validators.pattern('^[0-9]{9}$')]),
+    //phone: new FormControl('', [Validators.required, Validators.pattern('^[0-9]{9}$')]),
     password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(30)]),
     passwordConfirm: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(30)])
   },
