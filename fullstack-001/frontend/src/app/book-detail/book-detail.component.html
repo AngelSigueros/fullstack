@@ -2,12 +2,70 @@
 <hr>
 <ul>
     @if (book) {
-        <li>{{book.id}} - {{book.author.id}} - {{book.editorial.id}} - {{book.title}} - {{book.author.name}} - {{book.editorial.name}} - {{book.isbn}} - {{book.publishDate}}
-            <button class="btn btn-secondary" routerLink="/books/{{book.id}}/update">Edit</button>
-            <button class="btn btn-danger" (click)="borrarBook(book.id)">Borrar</button>
-        </li>
+    <li>{{book.id}} - {{book.author.id}} - {{book.editorial.id}} - {{book.title}} - {{book.author.name}} -
+        {{book.editorial.name}} - {{book.isbn}} - {{book.publishDate}}
+        <button class="btn btn-secondary" routerLink="/books/{{book.id}}/update">Edit</button>
+        <button class="btn btn-danger" (click)="borrarBook(book.id)">Borrar</button>
+    </li>
     }
     @else {
-        <li>No hay libro</li>
+    <li>No hay libro</li>
     }
 </ul>
+
+<div class="container py-5">
+    <div class="row">
+        <div class="col">
+            <!-- Listado de últimas valoraciones -->
+            <h3>Listado de valoraciones</h3>
+            <ul class="list-unstyled">
+                @for (rating of ratings; track rating.id) {
+                <li>
+                    <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top"
+                        href="#">
+                        <img src="https://placehold.co/100">
+                        <div class="col-lg-8">
+                            <h6 class="mb-0">Example blog post title
+
+                                <ngb-rating [(rate)]="rating.score" [max]="5" [readonly]="true">
+                                    <ng-template let-fill="fill" let-index="index">
+                                        <i class="bi-star{{ fill === 100 ? '-fill' : '' }}" style="color:#ffcc00"></i>
+                                    </ng-template>
+                                </ngb-rating>
+                            </h6>
+                            <small class="text-body-secondary">{{rating.comment}}</small>
+                        </div>
+                    </a>
+                </li>
+                }
+            </ul>
+        </div>
+        <div class="col">
+            <!-- Formulario para agregar nuevas valoraciones -->
+            <h3>Añade una valoración</h3>
+
+            <form [formGroup]="ratingForm" (ngSubmit)="save()">
+
+                <ngb-rating [max]="5" formControlName="score">
+                    <ng-template let-fill="fill" let-index="index">
+                        <i class="bi-star{{ fill === 100 ? '-fill' : '' }} fs-3" style="color:#ffcc00"></i>
+                    </ng-template>
+                </ngb-rating>
+
+                <div class="form-floating mb-3">
+                    <textarea
+                      class="form-control"
+                      style="min-height: 120px;"
+                      id="comment"
+                      formControlName="comment"
+                      placeholder="Deja un comentario">
+                    </textarea>
+                    <label for="fullName">Comentario</label>
+                </div>
+
+                <button class="w-100 btn btn-primary btn-lg mb-5 mt-5" type="submit">Guardar</button>
+
+            </form>
+        </div>
+    </div>
+</div>

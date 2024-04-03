@@ -9,6 +9,8 @@ import { EditorialDetailComponent } from './editorial-detail/editorial-detail.co
 import { EditorialListComponent } from './editorial-list/editorial-list.component';
 import { EditorialFormComponent } from './editorial-form/editorial-form.component';
 import { ReservationFormComponent } from './reservation-form/reservation-form.component';
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
 
 export const routes: Routes = [
     {
@@ -71,5 +73,13 @@ export const routes: Routes = [
     {
         path: 'editorials/create',
         component: EditorialFormComponent
+    },
+    {
+      path: 'login',
+      component: LoginComponent
+    },
+    {
+      path: 'register',
+      component: RegisterComponent
     }
 ];
