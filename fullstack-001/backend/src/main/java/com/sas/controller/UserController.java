@@ -1,5 +1,6 @@
 package com.sas.controller;
 
+import com.sas.dto.Register;
 import com.sas.model.User;
 import com.sas.repository.UserRepository;
 import com.sas.repository.UserRepository;
@@ -69,4 +70,30 @@ public class UserController {
         log.info(this.getClass().getName() +" - deleteAll");
         userRepo.deleteAll();
     }
+
+
+    @PostMapping("/register")
+    public void register(@RequestBody Register register) {
+        if (this.userRepo.existsByEmail(register.email())) {
+            throw new RuntimeException("Email ocupado");
+        }
+
+        User user = new User(null, null, register.email(), register.password());
+        this.userRepo.save(user);
+
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
