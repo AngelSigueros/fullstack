@@ -3,6 +3,7 @@ package com.sas.controller;
 import com.sas.dto.Login;
 import com.sas.dto.Register;
 import com.sas.dto.Token;
+import com.sas.model.Role;
 import com.sas.model.User;
 import com.sas.repository.UserRepository;
 import io.jsonwebtoken.Jwts;
@@ -82,7 +83,7 @@ public class UserController {
             throw new RuntimeException("Email ocupado!");
         }
 
-        User user = new User(null, null, register.email(), register.password());
+        User user = new User(null, null, register.email(), register.password(), Role.USER);
         this.userRepo.save(user);
 
     }
@@ -142,7 +143,8 @@ public class UserController {
                 // Fecha de expiración del token
                 .expiration(expirationDate)
                 // información personalizada: rol, username, email...
-                .claim("role", "admin")
+                .claim("role", user.getRole())
+                .claim("email", user.getEmail())
                 // Construye el token
                 .compact();
 
