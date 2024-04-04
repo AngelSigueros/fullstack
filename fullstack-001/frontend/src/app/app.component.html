@@ -7,10 +7,16 @@
 <button [routerLink]="['/editorials/create']">Crear Editorial</button>
 
 @if (isLoggedIn) {
-  <button class="btn btn-danger" (click)="logout()">LogOut</button>
+  <button class="btn btn-warning" (click)="logout()">
+    LogOut<i class="bi bi-box-arrow-right ms-1"></i>
+  </button>
 } @else {
-  <button [routerLink]="['/login']">LogIn</button>
-  <button [routerLink]="['/register']">Registro</button>
+  <button [routerLink]="['/login']">
+    LogIn<i class="bi bi-box-arrow-in-right ms-1"></i>
+  </button>
+  <button [routerLink]="['/register']">
+    Registro<i class="bi bi-person-add ms-1"></i>
+  </button>
 }
 
 <hr>
