@@ -55,9 +55,11 @@
                             </td>
                             <td>
                             <button class="btn btn-info" [routerLink]="['/books', book.id, 'detail']">Ver</button>
-                            <button class="btn btn-success ms-2" [routerLink]="['/books', book.id, 'update']">Edit</button>
                             <button class="btn btn-warning ms-2 btn-sm" [routerLink]="['/books', book.id, 'reserve']">Reservar</button>
+                            @if (isAdmin) {
+                            <button class="btn btn-success ms-2" [routerLink]="['/books', book.id, 'update']">Edit</button>
                             <button class="btn btn-danger ms-2" (click)="delete(book)">Borrar</button>
+                            }
                             </td>
                     </tr>
                     }     @empty {

@@ -5,6 +5,7 @@ import { Book } from '../model/book.model';
 import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { BookDetailComponent } from "../book-detail/book-detail.component";
 import { DatePipe } from '@angular/common';
+import { AuthenticationService } from '../authentication/authentication.service';
 
 @Component({
     selector: 'app-book-list',
@@ -17,8 +18,13 @@ import { DatePipe } from '@angular/common';
 export class BookListComponent implements OnInit {
   books: Book[] = [];
   showDeletedBookMessage: boolean = false;
+  isAdmin = false;
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(
+    private httpClient: HttpClient,
+    private authService: AuthenticationService) {
+      this.authService.isAdmin.subscribe(isAdmin=>this.isAdmin=isAdmin);
+  }
 
   ngOnInit(): void {
     this.loadBooks();
