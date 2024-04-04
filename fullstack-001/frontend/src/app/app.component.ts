@@ -13,10 +13,14 @@ import { AuthenticationService } from './authentication/authentication.service';
 export class AppComponent {
   title = 'Frontend';
   isLoggedIn = false;
+  userEmail = '';
+  isAdmin = false;
 
   constructor(private authService: AuthenticationService,
     private router: Router) {
     this.authService.isLoggedIn.subscribe(isLoggedIn=>this.isLoggedIn=isLoggedIn);
+    this.authService.userEmail.subscribe(userEmail=>this.userEmail=userEmail);
+    this.authService.isAdmin.subscribe(isAdmin=>this.isAdmin=isAdmin);
   }
 
   logout() {

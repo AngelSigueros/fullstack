@@ -1,10 +1,19 @@
 {{title}}
 <button [routerLink]="['/books']">Libros</button>
-<button [routerLink]="['/books/create']">Crear Libro</button>
 <button [routerLink]="['/authors']">Autores</button>
-<button [routerLink]="['/authors/create']">Crear Autor</button>
 <button [routerLink]="['/editorials']">Editoriales</button>
-<button [routerLink]="['/editorials/create']">Crear Editorial</button>
+
+@if (isAdmin) {
+  <button [routerLink]="['/books/create']">Crear Libro</button>
+  <button [routerLink]="['/authors/create']">Crear Autor</button>
+  <button [routerLink]="['/editorials/create']">Crear Editorial</button>
+}
+
+@if (userEmail) {
+  <button class="btn btn-outline-success me-2">
+  {{userEmail}}<i class="bi bi-person-circle ms-1"></i>
+  </button>
+}
 
 @if (isLoggedIn) {
   <button class="btn btn-warning" (click)="logout()">
