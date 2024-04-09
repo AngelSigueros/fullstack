@@ -11,6 +11,7 @@ import { EditorialFormComponent } from './editorial-form/editorial-form.componen
 import { ReservationFormComponent } from './reservation-form/reservation-form.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
+import { userRoleGuard } from './authentication/user-role.guard';
 
 export const routes: Routes = [
     {
@@ -28,7 +29,8 @@ export const routes: Routes = [
     },
     {
         path: 'books/create',
-        component: BookFormComponent
+        component: BookFormComponent,
+        canActivate: [userRoleGuard]
     },
     {
         path: 'books/:id/reserve',
@@ -36,7 +38,8 @@ export const routes: Routes = [
     },
     {
         path: 'books/:id/update',
-        component: BookFormComponent
+        component: BookFormComponent,
+        canActivate: [userRoleGuard]
     },
     {
       path: 'books/:id/reserve',
@@ -52,11 +55,13 @@ export const routes: Routes = [
     },
     {
         path: 'authors/:id/update',
-        component: AuthorFormComponent
+        component: AuthorFormComponent,
+        canActivate: [userRoleGuard]
     },
     {
         path: 'authors/create',
-        component: AuthorFormComponent
+        component: AuthorFormComponent,
+        canActivate: [userRoleGuard]
     },
     {
         path: 'editorials',
