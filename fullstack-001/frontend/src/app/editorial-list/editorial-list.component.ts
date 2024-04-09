@@ -1,4 +1,4 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Editorial } from '../model/editorial.model';
 import { RouterLink } from '@angular/router';
@@ -7,7 +7,7 @@ import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-editorial-list',
   standalone: true,
-  imports: [HttpClientModule, RouterLink, NgbAlertModule],
+  imports: [RouterLink, NgbAlertModule],
   templateUrl: './editorial-list.component.html',
   styleUrl: './editorial-list.component.css'
 })

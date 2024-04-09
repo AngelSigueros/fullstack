@@ -1,4 +1,4 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Author } from '../model/author.model';
 import { RouterLink } from '@angular/router';
@@ -7,7 +7,7 @@ import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-author-list',
   standalone: true,
-  imports: [RouterLink, HttpClientModule, NgbAlertModule],
+  imports: [RouterLink, NgbAlertModule],
   templateUrl: './author-list.component.html',
   styleUrl: './author-list.component.css',
 })

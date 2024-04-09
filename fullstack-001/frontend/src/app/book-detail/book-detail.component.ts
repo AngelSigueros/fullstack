@@ -1,4 +1,4 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Book } from '../model/book.model';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
@@ -10,7 +10,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 @Component({
   selector: 'app-book-detail',
   standalone: true,
-  imports: [HttpClientModule, RouterLink, NgbRatingModule, ReactiveFormsModule],
+  imports: [RouterLink, NgbRatingModule, ReactiveFormsModule],
   templateUrl: './book-detail.component.html',
   styleUrl: './book-detail.component.css'
 })

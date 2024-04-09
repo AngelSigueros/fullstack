@@ -1,4 +1,4 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Author } from '../model/author.model';
@@ -8,7 +8,7 @@ import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-author-detail',
   standalone: true,
-  imports: [HttpClientModule, RouterLink, DatePipe],
+  imports: [RouterLink, DatePipe],
   templateUrl: './author-detail.component.html',
   styleUrl: './author-detail.component.css'
 })

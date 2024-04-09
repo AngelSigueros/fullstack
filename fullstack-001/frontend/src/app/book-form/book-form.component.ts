@@ -1,4 +1,4 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Book } from '../model/book.model';
@@ -9,7 +9,7 @@ import { Editorial } from '../model/editorial.model';
 @Component({
   selector: 'app-book-form',
   standalone: true,
-  imports: [ReactiveFormsModule, HttpClientModule],
+  imports: [ReactiveFormsModule],
   templateUrl: './book-form.component.html',
   styleUrl: './book-form.component.css'
 })

@@ -1,4 +1,4 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Book } from '../model/book.model';
@@ -11,7 +11,7 @@ import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-reservation-form',
   standalone: true,
-  imports: [HttpClientModule, ReactiveFormsModule, CurrencyPipe, NgbAlertModule, RouterLink],
+  imports: [ReactiveFormsModule, CurrencyPipe, NgbAlertModule, RouterLink],
   templateUrl: './reservation-form.component.html',
   styleUrl: './reservation-form.component.css'
 })

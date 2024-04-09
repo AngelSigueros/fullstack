@@ -1,4 +1,4 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Book } from '../model/book.model';
@@ -12,7 +12,7 @@ import { AuthenticationService } from '../authentication/authentication.service'
     standalone: true,
     templateUrl: './book-list.component.html',
     styleUrl: './book-list.component.css',
-    imports: [DatePipe, RouterLink, HttpClientModule, NgbAlertModule, BookDetailComponent]
+    imports: [DatePipe, RouterLink, NgbAlertModule, BookDetailComponent]
 })
 
 export class BookListComponent implements OnInit {
