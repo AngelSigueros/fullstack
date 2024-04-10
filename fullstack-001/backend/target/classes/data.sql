@@ -1,3 +1,5 @@
+INSERT INTO `b_user` (`id`, `email`, `name`, `password`, `role`) VALUES (1, 'user1@sas.es', 'user1', '12345678', 'ADMIN');
+--
 INSERT INTO `author` (`id`, `active`, `bio`, `country`, `name`, `photo_url`) VALUES (1,_binary '','bio 1','Spain','Autor 1','https://picsum.photos/id/944/900/500');
 INSERT INTO `author` (`id`, `active`, `bio`, `country`, `name`, `photo_url`) VALUES (2,_binary '','bio 2','Spain','Autor 2','https://picsum.photos/id/944/900/500');
 INSERT INTO `author` (`id`, `active`, `bio`, `country`, `name`, `photo_url`) VALUES (3,_binary '','bio 3','Spain','Autor 3','https://picsum.photos/id/944/900/500');
