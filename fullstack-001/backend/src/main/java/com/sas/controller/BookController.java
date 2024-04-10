@@ -3,6 +3,7 @@ package com.sas.controller;
 import com.sas.model.Book;
 import com.sas.repository.BookRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,6 +31,7 @@ public class BookController {
     @GetMapping()
     public List<Book> findAll() {
         log.info(this.getClass().getName() +" - findAll");
+        SecurityContextHolder.getContext().getAuthentication().getPrincipal(); // user
         return bookRepo.findAll();
     }
 

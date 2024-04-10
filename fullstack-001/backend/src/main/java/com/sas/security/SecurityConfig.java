@@ -25,16 +25,16 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-        // Vesion posterior 6.1
-        http
-                .csrf(csrf -> csrf.disable())
-                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(authorizeHttpRequests -> authorizeHttpRequests
-                        .requestMatchers("api/users/login").permitAll()
-                        .requestMatchers("api/users/register").permitAll()
-                        .anyRequest().authenticated()
-                ).addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
-                .build();
+        // Para las nuevas versiones de Spring > 6.1
+//        http
+//            .csrf(csrf -> csrf.disable())
+//            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+//            .authorizeHttpRequests(authorizeHttpRequests -> authorizeHttpRequests
+//                    .requestMatchers("/users/login").permitAll()
+//                    .requestMatchers("/users/register").permitAll()
+//                    .anyRequest().authenticated()
+//            ).addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
+//            .build();
 
         // Versiones anteriores a Spring 6.1
         // Sin estados, sin sesiones Http ya q usamos token jwt
