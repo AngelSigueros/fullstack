@@ -3,7 +3,7 @@ import { HttpInterceptorFn } from '@angular/common/http';
 // Agrega token en la cabecera Http
 export const jwtInterceptor: HttpInterceptorFn = (req, next) => {
 
-  const token = localStorage.getItem('jwt-token');
+  const token = localStorage.getItem('jwt_token');
   if (token)
     req = req.clone({
       // agregar token a la cabecera Http
