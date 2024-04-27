@@ -19,8 +19,9 @@ public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
+    private String fullName;
     private String country;
+    @Column(columnDefinition = "boolean")
     private Boolean active;
     private String photoUrl;
     @Column(length = 1000)

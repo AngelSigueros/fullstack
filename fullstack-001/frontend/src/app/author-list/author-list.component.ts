@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Author } from '../model/author.model';
 import { RouterLink } from '@angular/router';
 import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
@@ -11,7 +11,7 @@ import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './author-list.component.html',
   styleUrl: './author-list.component.css',
 })
-export class AuthorListComponent {
+export class AuthorListComponent implements OnInit {
 
   url_base = 'http://localhost:8080/api/authors'; // https://fullstack-byvu.onrender.com/api/authors/
   authors: Author[] = [];

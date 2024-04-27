@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -16,6 +18,11 @@ public class SecurityConfig {
 
     public SecurityConfig(RequestJWTFilter jwtFilter) {
         this.jwtFilter = jwtFilter;
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
     /*
@@ -45,8 +52,12 @@ public class SecurityConfig {
         http.authorizeHttpRequests()
                 .requestMatchers("api/users/login").permitAll()
                 .requestMatchers("api/users/register").permitAll()
-                //.requestMatchers("api/books").hasAuthority(Role.ADMIN.name())
-                .requestMatchers(HttpMethod.POST, "api/books").hasAuthority(Role.ADMIN.name())
+                .requestMatchers("files/**").permitAll()
+                .requestMatchers("api/books").permitAll()
+                .requestMatchers("api/authors").permitAll()
+                .requestMatchers(HttpMethod.POST, "api/books").hasAnyAuthority(Role.ADMIN.name())
+                .requestMatchers(HttpMethod.PUT, "api/books").hasAnyAuthority(Role.ADMIN.name()) // solo el ADMIN puede ver libros
+                .requestMatchers(HttpMethod.DELETE, "api/books").hasAnyAuthority(Role.ADMIN.name()) // solo el ADMIN puede ver libros
                 .anyRequest().authenticated();
 
         // asignar nuestro filtro personalizado de Jwt

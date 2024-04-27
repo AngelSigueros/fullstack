@@ -44,7 +44,7 @@
           <select class="form-select" id="author" formControlName="author" [compareWith]="compareObjects">
             <!-- iterar sobre el array de authors mostrando cada uno  -->
             @for (author of authors; track author.id) {
-            <option [ngValue]="author">{{author.name}}</option>
+            <option [ngValue]="author">{{author.fullName}}</option>
             }
           </select>
           <label for="author">Autor/a del libro</label>

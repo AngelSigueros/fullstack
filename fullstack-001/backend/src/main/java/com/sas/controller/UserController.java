@@ -6,15 +6,17 @@ import com.sas.dto.Token;
 import com.sas.model.Role;
 import com.sas.model.User;
 import com.sas.repository.UserRepository;
+import com.sas.security.SecurityUtils;
+import com.sas.service.FileService;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.Base64;
-import java.util.Date;
-import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 
@@ -25,9 +27,14 @@ import java.util.concurrent.TimeUnit;
 public class UserController {
 
     private final UserRepository userRepo;
+    private final FileService fileService;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserController(UserRepository userRepo) {
+
+    public UserController(UserRepository userRepo, FileService fileService, PasswordEncoder passwordEncoder) {
         this.userRepo = userRepo;
+        this.fileService = fileService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @GetMapping("/{id}")
@@ -79,11 +86,17 @@ public class UserController {
 
     @PostMapping("/register")
     public void register(@RequestBody Register register) {
+
         if (this.userRepo.existsByEmail(register.email())) {
-            throw new RuntimeException("Email ocupado!");
+            throw new BadCredentialsException("Email ocupado!");
         }
 
-        User user = new User(null, null, register.email(), register.password(), Role.USER);
+        //User user = new User(null, null, register.email(), register.password(), Role.USER);
+        User user = User.builder()
+                .email(register.email())
+                .password(passwordEncoder.encode(register.password()))
+                .role(Role.USER)
+                .build();
         this.userRepo.save(user);
 
     }
@@ -97,8 +110,8 @@ public class UserController {
 
         User user = this.userRepo.findByEmail(login.email()).orElseThrow();
 
-        if (!user.getPassword().equals(login.password())) {
-            throw new RuntimeException("Las passwords no coinciden");
+        if (!passwordEncoder.matches(login.password(), user.getPassword())) {
+            throw new BadCredentialsException("Las passwords no coinciden");
         }
 
 //        String token = Jwts.builder()
@@ -149,6 +162,44 @@ public class UserController {
                 .compact();
 
         return new Token(token);
+    }
+
+
+    @GetMapping("/account")
+    public User getCurrentUser() {
+        return SecurityUtils.getCurrentUser().orElseThrow();
+    }
+
+
+    @PutMapping("/account")
+    public User update(@RequestBody User user) {
+        // Si está autenticado y es ADMIN o es el mismo usuario que la variable user
+        // entonces actualizar, en caso contrario no actualizamos
+        SecurityUtils.getCurrentUser().ifPresent(currentUser-> {
+            if (currentUser.getRole() == Role.ADMIN || Objects.equals(currentUser.getId(), user.getId())) {
+                this.userRepo.save(user);
+            } else {
+                throw new RuntimeException("No puede actualizar");
+            }
+        });
+        return user;
+    }
+
+    // subir avatar
+    @PostMapping("/avatar")
+    public User uploadAvatar(
+            @RequestParam(value = "photo") MultipartFile file
+    ) {
+
+        User user = SecurityUtils.getCurrentUser().orElseThrow();
+
+        if (file != null && !file.isEmpty()) {
+            String fileName = fileService.store(file);
+            user.setPhotoUrl(fileName);
+            this.userRepo.save(user);
+        }
+
+        return user;
     }
 }
 

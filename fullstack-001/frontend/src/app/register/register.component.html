@@ -1,9 +1,9 @@
 <main class="form-signin w-100 m-auto">
   <form [formGroup]="registerForm" (ngSubmit)="save()">
-    <img class="mb-4" src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+    <!-- <img class="mb-4" src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
     <h1 class="h3 mb-3 fw-normal">Crear nueva cuenta</h1>
 
-    <div class="form-floating">
+    <div class="form-floating mb-2">
       <input type="email" class="form-control" id="email" placeholder="name@example.com" formControlName="email">
       <label for="email">Email address</label>
       @if (registerForm.controls.email.touched && registerForm.controls.email.errors) {
@@ -33,12 +33,12 @@
       }
     </div> -->
 
-    <div class="form-floating">
+    <div class="form-floating mb-2">
       <input type="password" class="form-control" id="password" placeholder="Password" formControlName="password">
       <label for="password">Password</label>
     </div>
 
-    <div class="form-floating">
+    <div class="form-floating mb-2">
       <input type="password" class="form-control" id="passwordConfirm" placeholder="Password" formControlName="passwordConfirm">
       <label for="passwordConfirm">Confirmación password</label>
 
@@ -63,10 +63,17 @@
       -->
     </div>
 
-    <button class="btn btn-primary w-100 py-2" type="submit" [disabled]="registerForm.invalid">Registrarse</button>
+    <button class="btn btn-primary w-100 py-3" type="submit" [disabled]="registerForm.invalid">Registrarse</button>
     @if (registerForm.invalid){
       <small class="text-danger">Debes completar de forma correcta los campos para poder guardar.</small>
     }
-    <p class="mt-5 mb-3 text-body-secondary">© 2017–2024</p>
+    @if (errorMessage && errorMessage.length > 0) {
+      <small class="text-danger">{{errorMessage}}</small>
+    }
+    @if (successMessage) {
+      <small class="text-danger">{{successMessage}}</small>
+    }
+
+    <p class="mt-5 text-body-secondary text-center">© 2017–2024</p>
   </form>
 </main>

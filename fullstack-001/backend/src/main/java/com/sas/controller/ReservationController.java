@@ -1,8 +1,10 @@
 package com.sas.controller;
 
 import com.sas.model.Reservation;
+import com.sas.repository.RatingRepository;
 import com.sas.repository.ReservationRepository;
 import com.sas.repository.ReservationRepository;
+import com.sas.security.SecurityUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,9 +18,11 @@ import java.util.NoSuchElementException;
 public class ReservationController {
 
     private final ReservationRepository reservaRepo;
+    private final RatingRepository ratingRepo;
 
-    public ReservationController(ReservationRepository reservaRepo) {
+    public ReservationController(ReservationRepository reservaRepo, RatingRepository ratingRepo) {
         this.reservaRepo = reservaRepo;
+        this.ratingRepo = ratingRepo;
     }
 
     @GetMapping("/{id}")
@@ -39,7 +43,7 @@ public class ReservationController {
     @PostMapping()
     public Reservation saveReservation(@RequestBody Reservation reservation) {
         log.info(this.getClass().getName() +" - saveReservation");
-        // Todo
+        SecurityUtils.getCurrentUser().ifPresent(user-> reservation.setUser(user));
         return reservaRepo.save(reservation);
     }
 
@@ -58,6 +62,7 @@ public class ReservationController {
     @DeleteMapping("/{id}")
     public void deleteReservation(@PathVariable Long id) {
         log.info(this.getClass().getName() +" - deleteReservation "+ id);
+        ratingRepo.deleteByBookId(id);
         reservaRepo.deleteById(id);
     }
 

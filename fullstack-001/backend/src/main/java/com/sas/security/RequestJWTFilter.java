@@ -2,6 +2,7 @@ package com.sas.security;
 
 import com.sas.model.User;
 import com.sas.repository.UserRepository;
+import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import jakarta.servlet.FilterChain;
@@ -47,47 +48,47 @@ public class RequestJWTFilter extends OncePerRequestFilter {
 
         log.info("RequestJWTFilter - Ejecutando filtro JWT");
 
-        // Extraer Authorization de la cabecera Http
+        // 1- Extraer Authorization de la cabecera Http
         String bearerToken = request.getHeader("Authorization");
-        String token = "";
-        if (StringUtils.hasLength(bearerToken) && bearerToken.startsWith("Bearer")) {// No nulo y vacio
-            //token = bearerToken.substring("Bearer ".length());
-            token = bearerToken.split(" ")[1];
-        } else {
+        if (!StringUtils.hasLength(bearerToken) || !bearerToken.startsWith("Bearer")) {
             filterChain.doFilter(request, response);
             return;
         }
-
+        String token = bearerToken.substring("Bearer ".length());
         log.info("Token JWT extraido {}", token);
 
-        // Verificar token
-        byte[] key = Base64.getDecoder().decode("FZD5maIaX04mYCwsgckoBh1NJp6T3t62h2MVyEtdo3w=");
-        String userId = Jwts.parser()
-                .verifyWith(Keys.hmacShaKeyFor(key))
-                .build()
-                .parseSignedClaims(token)
-                .getPayload()
-                .getSubject();
-
-        log.info("Id de usuario " + userId);
-
-        // 3- Obtener user con el id del token
-        Optional<User> userOptional = this.userRepository.findById(Long.valueOf(userId));
+        // 2- Verificar token
+        Optional<User> userOptional = validateTokenAndExtract(token);
         if (userOptional.isEmpty()) {
-            log.warn("Usuario no encontrado ", userId);
-            // no hay usuario error 401 UNAUTHORIZED
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
             return;
         }
 
-        // 4- Crear objeto con datos del user en el contexto de seguridad Spring Security
+        // 3- cargar usuario en contexto de seguridad Spring Security
         // Obligatorio starter Spring Security en pom.xml
         User user = userOptional.get();
+        log.info("Usuario {}", user.getId());
         SimpleGrantedAuthority role = new SimpleGrantedAuthority(user.getRole().name());
         Authentication auth = new UsernamePasswordAuthenticationToken(user, null, List.of(role));
         SecurityContextHolder.getContext().setAuthentication(auth);
 
         // Dejar pasar la peticion para q continue
         filterChain.doFilter(request, response);
+    }
+
+    private Optional<User> validateTokenAndExtract(String token) {
+        byte[] key = Base64.getDecoder().decode("FZD5maIaX04mYCwsgckoBh1NJp6T3t62h2MVyEtdo3w=");
+        try {
+            String userId = Jwts.parser()
+                    .verifyWith(Keys.hmacShaKeyFor(key))
+                    .build()
+                    .parseSignedClaims(token)
+                    .getPayload()
+                    .getSubject();
+            return this.userRepository.findById(Long.valueOf(userId));
+        } catch (JwtException e) {
+            log.error("Error en la validación del token JWT");
+            return Optional.empty();
+        }
     }
 }

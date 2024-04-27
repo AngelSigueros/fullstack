@@ -49,7 +49,7 @@ export class ReservationFormComponent implements OnInit {
       }
 
       // traer el book
-      this.httpClient.get<Book>('http://localhost:8080/books/' + id)
+      this.httpClient.get<Book>('http://localhost:8080/api/books/' + id)
       .subscribe(book => this.book = book);
 
     });
@@ -125,7 +125,7 @@ export class ReservationFormComponent implements OnInit {
     };
 
     // enviar a backend con httpclient post
-    this.httpClient.post<Reservation>('http://localhost:8080/reservations', reservation)
+    this.httpClient.post<Reservation>('http://localhost:8080/api/reservations', reservation)
     .subscribe(reservation => {
       this.reservation = reservation;
       this.showFinishMessage = true;

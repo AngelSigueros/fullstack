@@ -12,6 +12,9 @@ import { ReservationFormComponent } from './reservation-form/reservation-form.co
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { userRoleGuard } from './authentication/user-role.guard';
+import { AccountFormComponent } from './account-form/account-form.component';
+import { AvatarFormComponent } from './avatar-form/avatar-form.component';
+import { userLoggedGuard } from './authentication/user-logged-in.guard';
 
 export const routes: Routes = [
     {
@@ -25,7 +28,8 @@ export const routes: Routes = [
     },
     {
         path: 'books/:id/detail',
-        component: BookDetailComponent
+        component: BookDetailComponent,
+        canActivate: [userLoggedGuard]
     },
     {
         path: 'books/create',
@@ -86,5 +90,13 @@ export const routes: Routes = [
     {
       path: 'register',
       component: RegisterComponent
+    },
+    {
+      path: 'account',
+      component: AccountFormComponent
+    },
+    {
+      path: 'avatar',
+      component: AvatarFormComponent
     }
 ];

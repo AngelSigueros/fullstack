@@ -1,6 +1,6 @@
 export interface Author {
     id: number;
-    name: string;
+    fullName: string;
     country: string;
     active: boolean;
     photoUrl: string;

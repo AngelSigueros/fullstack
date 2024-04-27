@@ -1,0 +1,33 @@
+<p>Account Form</p>
+<hr>
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <h1 class="my-3">Perfil del Usuario</h1>
+            <button class="btn btn-success" routerLink="/avatar">
+                Cambiar avatar
+              </button>
+            <form [formGroup]="userForm" (ngSubmit)="save()">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="name" formControlName="name"
+                        placeholder="Nombre completo" />
+                    <label for="name">Nombre completo</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="lastName" formControlName="lastName">
+                    <label for="lastName">Apellido</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control"
+                    id="street" formControlName="street" placeholder="Calle Falsa 1, 5D">
+                    <label for="street">Dirección</label>
+                </div>
+
+                <button class="w-100 btn btn-primary mb-5" type="submit">Guardar</button>
+            </form>
+        </div>
+
+    </div>
+</div>

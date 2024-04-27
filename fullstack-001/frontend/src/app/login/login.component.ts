@@ -11,33 +11,41 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [ReactiveFormsModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrl: './login.component.css',
 })
 export class LoginComponent {
   loginForm = this.fb.group({
     email: [''],
-    password: ['']
+    password: [''],
   });
 
-  constructor(private fb: FormBuilder, private httpClient: HttpClient,
-    private authService: AuthenticationService, private router: Router) {}
+  errorMessage = '';
+
+  constructor(
+    private fb: FormBuilder,
+    private httpClient: HttpClient,
+    private authService: AuthenticationService,
+    private router: Router
+  ) {}
 
   save() {
     const login: Login = {
       email: this.loginForm.get('email')?.value ?? '',
-      password: this.loginForm.get('password')?.value ?? '',
-    }
+      password: this.loginForm.get('password')?.value ?? ''
+    };
     console.log(login);
 
     const url = 'http://localhost:8080/api/users/login';
-    this.httpClient.post<Token>(url, login).subscribe(response => {
-      console.log(response);
-      console.log(response.token);
-
-      this.authService.saveToken(response.token);
-      this.router.navigate(['/books']);
+    this.httpClient.post<Token>(url, login).subscribe({
+      next: (response) => {
+        this.authService.saveToken(response.token);
+        this.router.navigate(['/books']);
+      },
+      error: response => {
+        console.log(response);
+        this.errorMessage = response.error;
+      }
+      
     });
-
-
   }
 }

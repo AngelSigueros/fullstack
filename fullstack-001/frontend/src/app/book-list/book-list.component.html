@@ -1,6 +1,13 @@
 <h2>Book List</h2>
 <hr>
 
+@if (showSpinner) {
+<div class="container-fluid text-center">
+    <div class="spinner-border text-success" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
+} @else {
 <div class="container-fluid">
     <div class="row">
         <div class="col">
@@ -8,8 +15,8 @@
             <h1 class="mt-5 mb-5">Listado de libros</h1>
 
             @if (showDeletedBookMessage) {
-              <!--<ngb-alert type="success" [dismissible]="false">Libro borrado correctamente</ngb-alert>-->
-              <ngb-alert type="success" (closed)="hideDeletedBookMessage()">Libro borrado correctamente.</ngb-alert>
+            <!--<ngb-alert type="success" [dismissible]="false">Libro borrado correctamente</ngb-alert>-->
+            <ngb-alert type="success" (closed)="hideDeletedBookMessage()">Libro borrado correctamente.</ngb-alert>
             }
 
             <table class="table">
@@ -40,31 +47,43 @@
                             }
                         </td>
                         <td>{{book.price}}</td>
-                        <td>{{book.publishDate | date:'dd/MM/yy'}}</td>
-                        <td>{{book.author.name}}</td>
-                        <td>{{book.editorial.name}}</td> 
-                        <td>
-                            <a class="badge text-bg-secondary text-decoration-none" [routerLink]="['/authors', book.author.id, 'detail']">
-                            {{book.author.name}}
-                            </a>
-                            </td>
-                            <td>
-                            <a class="badge text-bg-warning text-decoration-none" [routerLink]="['/editorials', book.editorial.id, 'detail']">
-                            {{book.editorial.name}}
-                            </a>
-                            </td>
-                            <td>
-                            <button class="btn btn-info" [routerLink]="['/books', book.id, 'detail']">Ver</button>
-                            <button class="btn btn-warning ms-2 btn-sm" [routerLink]="['/books', book.id, 'reserve']">Reservar</button>
-                            @if (isAdmin) {
-                            <button class="btn btn-success ms-2" [routerLink]="['/books', book.id, 'update']">Edit</button>
-                            <button class="btn btn-danger ms-2" (click)="delete(book)">Borrar</button>
+                        <td> @if (book.published) {
+                            <span class="badge text-bg-success">Sí</span>
+                            } @else{
+                            <span class="badge text-bg-danger">No</span>
                             }
-                            </td>
+                        </td>
+                        <td>{{book.releaseDate | date:'dd/MM/yy'}}</td>
+                        <td>
+                            <a class="badge text-bg-secondary text-decoration-none"
+                                [routerLink]="['/authors', book.author.id, 'detail']">
+                                {{book.author.fullName}}
+                            </a>
+                        </td>
+                        <td>
+                            <a class="badge text-bg-warning text-decoration-none"
+                                [routerLink]="['/editorials', book.editorial.id, 'detail']">
+                                {{book.editorial.name}}
+                            </a>
+                        </td>
+                        <td>
+                            <button class="btn btn-info ms-2 btn-sm"
+                                [routerLink]="['/books', book.id, 'detail']">Ver</button>
+                            <button class="btn btn-warning ms-2 btn-sm"
+                                [routerLink]="['/books', book.id, 'reserve']">Reservar</button>
+                            @if (isAdmin) {
+                            <button class="btn btn-success ms-2 btn-sm"
+                                [routerLink]="['/books', book.id, 'update']">Edit</button>
+                            <button class="btn btn-danger ms-2 btn-sm" (click)="openModal(modal, book)">Borrar
+                            </button>
+                            }
+                        </td>
                     </tr>
-                    }     @empty {
-                        <tr><td>No hay libros</td></tr>
-                        }
+                    } @empty {
+                    <tr>
+                        <td>No hay libros</td>
+                    </tr>
+                    }
 
                 </tbody>
             </table>
@@ -72,3 +91,26 @@
         </div>
     </div>
 </div>
+}
+<ng-template #modal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Despublicar libro</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cancelar')"></button>
+    </div>
+    <div class="modal-body">
+        <p>
+            Esta acción va a despublicar el libro, por lo que ya no será accesible ni se podrá comprar.
+            ¿Está de acuerdo?
+        </p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-success" (click)="modal.close('Aceptar')">
+            <i class="bi bi-check-lg me-2"></i>
+            Aceptar
+        </button>
+        <button type="button" class="btn btn-danger" (click)="modal.close('Cancelar')">
+            <i class="bi bi-x-circle me-2"></i>
+            Cancelar
+        </button>
+    </div>
+</ng-template>

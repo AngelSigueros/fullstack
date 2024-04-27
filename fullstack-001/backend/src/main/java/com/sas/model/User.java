@@ -1,5 +1,6 @@
 package com.sas.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -8,6 +9,7 @@ import lombok.*;
 @NoArgsConstructor
 @Getter
 @Setter
+@Builder
 @ToString
 public class User {
     @Id
@@ -16,7 +18,11 @@ public class User {
     private String name;
     private String email;
     // private Boolean active;
+    @JsonIgnore
     private String password;
+    private String lastName;
+    private String street;
+    private String photoUrl;
     @Enumerated(EnumType.STRING)
     private Role role;
 }
