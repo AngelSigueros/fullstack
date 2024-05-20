@@ -45,7 +45,7 @@ export class BookListComponent implements OnInit {
   }
 
   loadBooks() {
-    const url = 'http://localhost:8080/api/books';
+    const url = 'https://fullstack-djd0.onrender.com/api/books';
     this.httpClient.get<Book[]>(url).subscribe(books => {
       this.books = books;
       this.showSpinner = false;

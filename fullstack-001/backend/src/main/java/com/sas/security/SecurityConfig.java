@@ -55,9 +55,9 @@ public class SecurityConfig {
                 .requestMatchers("files/**").permitAll()
                 .requestMatchers("api/books").permitAll()
                 .requestMatchers("api/authors").permitAll()
-                .requestMatchers(HttpMethod.POST, "api/books").hasAnyAuthority(Role.ADMIN.name())
-                .requestMatchers(HttpMethod.PUT, "api/books").hasAnyAuthority(Role.ADMIN.name()) // solo el ADMIN puede ver libros
-                .requestMatchers(HttpMethod.DELETE, "api/books").hasAnyAuthority(Role.ADMIN.name()) // solo el ADMIN puede ver libros
+                //.requestMatchers(HttpMethod.POST, "api/books").hasAnyAuthority(Role.ADMIN.name())
+                //.requestMatchers(HttpMethod.PUT, "api/books").hasAnyAuthority(Role.ADMIN.name()) // solo el ADMIN puede ver libros
+                //.requestMatchers(HttpMethod.DELETE, "api/books").hasAnyAuthority(Role.ADMIN.name()) // solo el ADMIN puede ver libros
                 .anyRequest().authenticated();
 
         // asignar nuestro filtro personalizado de Jwt
