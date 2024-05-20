@@ -10,8 +10,8 @@
 # Clase de Alan
 # docker pull eclipse-temurin:21-jre-jammy
 # generar .jar con package en maven
-#FROM eclipse-temurin:21-jre-jammy
-FROM ctoscano/eclipse-temurin-21-jdk-jammy
+FROM eclipse-temurin:21-jre-jammy
+# FROM ctoscano/eclipse-temurin-21-jdk-jammy
 ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} backend.jar
 ENTRYPOINT ["java","-jar","/backend.jar"]

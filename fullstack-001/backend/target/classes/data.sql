@@ -1,10 +1,10 @@
-INSERT INTO `b_user` (`id`, `email`, `name`, `password`, `role`) VALUES (1, 'user1@sas.es', 'user1', '12345678', 'ADMIN');
-INSERT INTO `b_user` (`id`, `email`, `name`, `password`, `role`) VALUES (2, 'user2@sas.es', 'user2', '12345678', 'USER');
+-- INSERT INTO `b_user` (`id`, `email`, `name`, `password`, `role`) VALUES (1, 'user1@sas.es', 'user1', '12345678', 'ADMIN');
+-- INSERT INTO `b_user` (`id`, `email`, `name`, `password`, `role`) VALUES (2, 'user2@sas.es', 'user2', '12345678', 'USER');
 --
-INSERT INTO `author` (`id`, `active`, `bio`, `country`, `name`, `photo_url`) VALUES (1,_binary '','bio 1','Spain','Autor 1','https://picsum.photos/id/944/900/500');
-INSERT INTO `author` (`id`, `active`, `bio`, `country`, `name`, `photo_url`) VALUES (2,_binary '','bio 2','Spain','Autor 2','https://picsum.photos/id/944/900/500');
-INSERT INTO `author` (`id`, `active`, `bio`, `country`, `name`, `photo_url`) VALUES (3,_binary '','bio 3','Spain','Autor 3','https://picsum.photos/id/944/900/500');
-INSERT INTO `author` (`id`, `active`, `bio`, `country`, `name`, `photo_url`) VALUES (4,_binary '','bio 4','Spain','Autor 4','https://picsum.photos/id/944/900/500');
+INSERT INTO `author` (`id`, `active`, `bio`, `country`, `full_name`, `photo_url`) VALUES (1, 1,'bio 1','Spain','Autor 1','avatar.png');
+INSERT INTO `author` (`id`, `active`, `bio`, `country`, `full_name`, `photo_url`) VALUES (2, 1,'bio 2','Spain','Autor 2','avatar.png');
+INSERT INTO `author` (`id`, `active`, `bio`, `country`, `full_name`, `photo_url`) VALUES (3, 0,'bio 3','Spain','Autor 3','avatar.png');
+INSERT INTO `author` (`id`, `active`, `bio`, `country`, `full_name`, `photo_url`) VALUES (4, 0,'bio 4','Spain','Autor 4','avatar.png');
 --
 INSERT INTO `editorial` (`year`, `id`, `descripcion`, `name`, photo_url) VALUES ('1954', '1', 'Edtorial 1 con solera', 'Editorial 1', 'https://picsum.photos/id/944/900/500');
 INSERT INTO `editorial` (`year`, `id`, `descripcion`, `name`, photo_url) VALUES ('1964', '2', 'Edtorial 2 con solera', 'Editorial 2', 'https://picsum.photos/id/944/900/500');
